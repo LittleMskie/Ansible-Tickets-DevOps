@@ -1,0 +1,19 @@
+---
+- name: Change Configurations
+  hosts: all
+  user: root
+  tasks:
+  - name: Change Configurations
+    lineinfile:
+      path: /etc/selinux/config
+      regexp: '^SELINUX='
+      line: SELINUXTYPE=minimum
+  - name:
+    lineinfile:
+      path: /etc/hosts
+      regexp: '^127\.0\.0\.1'
+      line: 127.0.0.1 facebook.com
+  - name: Ensure the default Apache port is 8.8.8.8
+    lineinfile:
+      path: /etc/resolv.conf
+      line: nameserver 8.8.8.8
